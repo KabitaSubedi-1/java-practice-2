@@ -6,14 +6,26 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the first number: ");
-        double firstNumber = scanner.nextDouble();
+        Double firstNumber = readNumber(scanner, "Enter the first number: ");
+        if (firstNumber == null) {
+            scanner.close();
+            return;
+        }
 
         System.out.print("Enter an operator (+, -, *, /): ");
-        char operator = scanner.next().charAt(0);
+        String operatorInput = scanner.next().trim();
+        if (operatorInput.length() != 1) {
+            System.out.println("Invalid operator.");
+            scanner.close();
+            return;
+        }
+        char operator = operatorInput.charAt(0);
 
-        System.out.print("Enter the second number: ");
-        double secondNumber = scanner.nextDouble();
+        Double secondNumber = readNumber(scanner, "Enter the second number: ");
+        if (secondNumber == null) {
+            scanner.close();
+            return;
+        }
 
         double result;
 
@@ -43,5 +55,14 @@ public class App {
 
         System.out.println("Result: " + result);
         scanner.close();
+    }
+
+    private static Double readNumber(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        if (!scanner.hasNextDouble()) {
+            System.out.println("Invalid number input.");
+            return null;
+        }
+        return scanner.nextDouble();
     }
 }

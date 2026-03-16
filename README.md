@@ -7,6 +7,7 @@ The program:
 - asks for an operator: `+`, `-`, `*`, `/`
 - asks for the second number
 - prints the result
+- validates numeric input
 - handles division by zero
 
 ## Run
